@@ -1,0 +1,12 @@
+datafile1=read.table("bivalent_count.cl1", header=T)
+datafile2=read.table("bivalent_count.cl2", header=T)
+names <-c("Cluster1", "Cluster2")
+pdf (file="bivalent_fig6.pdf", height = 7.0, width = 10.5)
+symbols (datafile1$H3k27me3, datafile1$H3k4me3, circles=datafile1$H1hesc, fg="white", bg="yellow", inches=0.5, xlab="Repressive Promoter(H3k27me3)", ylab="Active Promoter (H3k4me3)", main ="Bivalent Promoter in H1hesc")
+text(datafile1$H3k27me3, datafile1$H3k4me3, datafile1$Gene, cex=0.5, col="red")
+symbols (datafile2$H3k27me3, datafile2$H3k4me3, circles=datafile2$H1hesc, fg="white", bg="yellow", inches=0.5, xlab="Repressive Promoter(H3k27me3)", ylab="Active Promoter (H3k4me3)", main ="Bivalent Promoter in H1hesc", add =TRUE)
+text(datafile2$H3k27me3, datafile2$H3k4me3, datafile2$Gene, cex=0.5, col="black")
+legend("topright", names, cex=0.8, text.col = c("red", "black"));
+abline(h=50, col="blue")
+abline(v=50, col="blue")
+dev.off()
